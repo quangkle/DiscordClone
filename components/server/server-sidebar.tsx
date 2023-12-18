@@ -4,6 +4,7 @@ import { ChannelType } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import React from 'react'
 import ServerHeader from './server-header';
+import { redirectToSignIn } from '@clerk/nextjs';
 
 interface ServerSidebarProps {
     serverId: string;
@@ -15,7 +16,7 @@ const ServerSidebar = async ({
     const profile = await currentProfile();
 
     if (!profile) {
-        return redirect("/");
+        return redirectToSignIn();
     }
 
     const server = await db.server.findUnique({
