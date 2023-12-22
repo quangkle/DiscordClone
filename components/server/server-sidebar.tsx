@@ -11,6 +11,7 @@ import ServerSearch from './server-search';
 import { Separator } from '../ui/separator';
 import ServerSection from './server-section';
 import ServerChannel from './server-channel';
+import ServerMember from './server-member';
 
 interface ServerSidebarProps {
     serverId: string;
@@ -130,14 +131,16 @@ const ServerSidebar = async ({
                             role={role}
                             label="Text Channels"
                         />
-                        {textChannels.map((channel) => (
-                            <ServerChannel 
-                                key={channel.id}
-                                channel={channel}
-                                role={role}
-                                server={server}
-                            />
-                        ))}
+                        <div className='space-y-[2px]'>
+                            {textChannels.map((channel) => (
+                                <ServerChannel 
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
 
@@ -149,14 +152,16 @@ const ServerSidebar = async ({
                             role={role}
                             label="Voice Channels"
                         />
-                        {audioChannels.map((channel) => (
-                            <ServerChannel 
-                                key={channel.id}
-                                channel={channel}
-                                role={role}
-                                server={server}
-                            />
-                        ))}
+                        <div className='space-y-[2px]'>
+                            {audioChannels.map((channel) => (
+                                <ServerChannel 
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
 
@@ -168,12 +173,32 @@ const ServerSidebar = async ({
                             role={role}
                             label="Video Channels"
                         />
-                        {audioChannels.map((channel) => (
-                            <ServerChannel 
-                                key={channel.id}
-                                channel={channel}
-                                role={role}
+                        <div className='space-y-[2px]'>
+                            {videoChannels.map((channel) => (
+                                <ServerChannel 
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {!!members?.length && (
+                    <div className='mb-2'>
+                        <ServerSection
+                            sectionType='members'
+                            role={role}
+                            label="Members"
+                            server={server}
+                        />
+                        {members.map((member) => (
+                            <ServerMember 
+                                key={member.id}
                                 server={server}
+                                member={member}
                             />
                         ))}
                     </div>
