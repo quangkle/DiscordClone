@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import queryString from "query-string";
+import { useRouter } from "next/navigation";
 
 import {
     Dialog,
@@ -14,7 +15,6 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from "@/components/ui/button";
 import useModal from "@/hooks/use-modal-store";
-import { useRouter } from "next/navigation";
 
 
 const DeleteChannelModal = () => {
@@ -40,7 +40,7 @@ const DeleteChannelModal = () => {
         
             onClose();
             router.refresh();
-            router.push(`/servers/${server?.id}`);
+            //router.push(`/servers/${server?.id}`);
         } catch (error) {
             console.log(error);
         } finally {
